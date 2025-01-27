@@ -118,7 +118,7 @@ variable "account_replication_type" {
 }
 
 variable "storage_containers" {
-  description = "map of storage container configs, keyed polymorphically"
+  description = "map of storage container configs"
   type = map(object({
     name                  = string
     container_access_type = string
@@ -127,7 +127,7 @@ variable "storage_containers" {
 }
 
 variable "storage_shares" {
-  description = "map of storage file shares configs, keyed polymorphically"
+  description = "map of storage file shares configs"
   type = map(object({
     name  = string
     quota = number
@@ -136,7 +136,7 @@ variable "storage_shares" {
 }
 
 variable "storage_queues" {
-  description = "map of storage queue configs, keyed polymorphically"
+  description = "map of storage queue configs"
   type = map(object({
     name = string
   }))
@@ -159,15 +159,9 @@ variable "enable_https_traffic_only" {
 }
 
 variable "access_tier" {
-  description = "Choose between Hot or Cool"
+  description = "The storage account access tier, currently supports 'Hot', 'Cool', and 'Premium'"
   type        = string
   default     = "Hot"
-
-  validation {
-    condition     = (contains(["hot", "cool"], lower(var.access_tier)))
-    error_message = "The account_tier must be either \"Hot\" or \"Cool\"."
-  }
-
 }
 
 variable "account_kind" {
