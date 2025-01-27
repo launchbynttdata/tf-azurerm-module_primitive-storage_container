@@ -9,3 +9,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+resource "azurerm_storage_container" "container" {
+  name                              = var.name
+  storage_account_name              = var.storage_account_name
+  container_access_type             = var.container_access_type
+  default_encryption_scope          = var.default_encryption_scope
+  encryption_scope_override_enabled = var.encryption_scope_override_enabled
+  metadata                          = var.metadata
+}
