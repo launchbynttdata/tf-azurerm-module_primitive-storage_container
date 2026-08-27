@@ -43,9 +43,9 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 		t.Fatalf("Error getting Storage Container client: %v", err)
 	}
 
-	resourceGroupName := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_name")
-	storageAccountName := terraform.Output(t, ctx.TerratestTerraformOptions(), "storage_account_name")
-	storageContainerName := terraform.Output(t, ctx.TerratestTerraformOptions(), "container_name")
+	resourceGroupName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "resource_group_name")
+	storageAccountName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "storage_account_name")
+	storageContainerName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "container_name")
 
 	t.Run("doesStorageAccountExist", func(t *testing.T) {
 		storageAccount, err := storageAccountClient.GetProperties(context.Background(), resourceGroupName, storageAccountName, nil)
